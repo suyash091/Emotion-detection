@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>Capture picture from your webcam</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
+<style>
+body {
+  background-color: black;
+  color: white;
+}
+  img {
+  border: 1px solid white;
+      border-radius: 50%;
+    opacity: .60;
+    transition: opacity .5s ease-in-out;
+  }
+  img:hover {
+    opacity: 1;
+  }
+    html {
+  --text-color-normal: #0a244d;
+  --text-color-light: #8cabd9;
+}
+
+body {
+  --text-color-normal: hsl(210, 10%, 62%);
+  --text-color-light: hsl(210, 15%, 35%);
+  --text-color-richer: hsl(210, 50%, 72%);
+  --text-color-highlight: hsl(25, 70%, 45%);
+}
+
+</style>
+
+</head>
+
+<body>
+    <div id="camera" style="margin:0 auto;height:auto;width:auto; text-align:center;border: 1px solid white;border-radius: 4px;padding: 5px;"></div>
+    <div style="margin:0 auto;height:auto;width:auto; text-align:center;margin-top:25px">
+    <!--FOR THE SNAPSHOT-->
+    <input type="button" value="Take a Snap" id="btPic" onclick="takeSnapShot()" />
+    <p id="snapShot"></p>
+    </div>
+</body>
+
+<script>
+    // CAMERA SETTINGS.
+    Webcam.set({
+        width: 440,
+        height: 380,
+        image_format: 'jpeg',
+        jpeg_quality: 100
+    });
+    Webcam.attach('#camera');
+
+    // SHOW THE SNAPSHOT.
+    takeSnapShot = function () {
+        Webcam.snap(function (data_uri) {
+        var xhr = new XMLHttpRequest();
+xhr.open("POST", "/process", true);
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.send(JSON.stringify({
+    value: data_uri
+}));
+xhr.onload = function() {
+  var data = JSON.parse(this.responseText);
+
+            document.getElementById('snapShot').innerHTML =
+                '<img src="' + data_uri + '" width="70px" height="50px" /><p>' + data.key + '</p>';
+                console.log(data);
+};
+        });
+    }
+
+
+</script>
+<script>
+
+
+
+
+</script>
+</html>
