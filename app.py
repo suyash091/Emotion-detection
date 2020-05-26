@@ -84,7 +84,10 @@ def realtime():
 @app.route('/process', methods=['GET','POST'])
 def process():
     start = time.time()
-    value=emotions[np.argmax(extract_face(request.json['value']))]
+    try:
+        value=emotions[np.argmax(extract_face(request.json['value']))]
+    except:
+        value="No Face, bad lighting or low Quality error"
     end = time.time()
     print("Model: seconds {}".format( end - start))
     return jsonify({'key':value})
