@@ -22,6 +22,7 @@ import base64
 import efficientnet.keras as efn
 import tensorflow as tf
 global model
+import time
 from tensorflow.python.keras.backend import set_session
 sess = tf.Session()
 set_session(sess)
@@ -73,12 +74,19 @@ def extract_face(img_data, required_size=(224, 224)):
 app = Flask(__name__)
 
 @app.route('/', methods=['GET','POST'])
-def signup():
+def home():
+    return render_template('home0.htm')
+
+@app.route('/real-time', methods=['GET','POST'])
+def realtime():
     return render_template('home.htm')
 
 @app.route('/process', methods=['GET','POST'])
 def process():
+    start = time.time()
     value=emotions[np.argmax(extract_face(request.json['value']))]
+    end = time.time()
+    print("Model: seconds {}".format( end - start))
     return jsonify({'key':value})
 
 

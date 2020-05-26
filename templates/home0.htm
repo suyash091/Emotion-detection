@@ -27,6 +27,7 @@ body {
   --text-color-richer: hsl(210, 50%, 72%);
   --text-color-highlight: hsl(25, 70%, 45%);
 }
+
 #menu {
      margin: 0;
      width: auto;
@@ -84,15 +85,14 @@ body {
 <body>
 <div id="menu">
      <ul>
-          <li><a href="/" >SnapShot</a></li>
-          <li><a href="#" class="active">Real-time</a></li>
+          <li><a href="#" class="active">SnapShot</a></li>
+          <li><a href="/real-time">Real-time</a></li>
      </ul>
 </div>
-
     <div id="camera" style="margin:0 auto;height:auto;width:auto; text-align:center;border: 1px solid white;border-radius: 4px;padding: 5px;"></div>
     <div style="margin:0 auto;height:auto;width:auto; text-align:center;margin-top:25px">
     <!--FOR THE SNAPSHOT-->
-    <input type="button" value="Real-Time Analysis" id="btPic" onclick="takeSnapShot()" />
+    <input type="button" value="Take a Snap" id="btPic" onclick="takeSnapShot()" />
     <p id="snapShot"></p>
     </div>
 </body>
@@ -120,7 +120,8 @@ xhr.onload = function() {
   var data = JSON.parse(this.responseText);
 
             document.getElementById('snapShot').innerHTML =
-                '<p>' + data.key + '</p>';
+                '<img src="' + data_uri + '" width="70px" height="50px" /><p>' + data.key + '</p>';
+                console.log(data);
 };
         });
     }
@@ -129,7 +130,7 @@ xhr.onload = function() {
 </script>
 <script>
 
-setInterval(takeSnapShot, 2500);
+
 
 
 </script>
