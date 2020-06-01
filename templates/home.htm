@@ -77,17 +77,131 @@ body {
      -moz-border-radius: 20px;
      -o-border-radius: 20px;
 }
+
+
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  margin: 0 auto;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+#demo img{
+border: 1px solid white;
+      border-radius: 5%;
+    opacity: .60;
+    transition: opacity .5s ease-in-out;
+    height:50px;
+    width:50px;
+}
+
 </style>
 
 </head>
 
 <body>
+
+
 <div id="menu">
      <ul>
           <li><a href="/" >SnapShot</a></li>
           <li><a href="#" class="active">Real-time</a></li>
      </ul>
 </div>
+
+<!----guide tab---->
+<div>
+
+    <h2 style="text-align: center">Tabs</h2>
+<p style="text-align: center">Click on the buttons inside the tabbed menu:</p>
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Neutral')" style="display: inline-block;">Neutral</button>
+  <button class="tablinks" onclick="openCity(event, 'Happiness')" style="display: inline-block;">Happiness</button>
+  <button class="tablinks" onclick="openCity(event, 'Sadness')" style="display: inline-block;">Sadness</button>
+  <button class="tablinks" onclick="openCity(event, 'Surprise')" style="display: inline-block;">Surprise</button>
+  <button class="tablinks" onclick="openCity(event, 'Disgust')" style="display: inline-block;">Disgust</button>
+  <button class="tablinks" onclick="openCity(event, 'Fear')" style="display: inline-block;">Fear</button>
+  <button class="tablinks" onclick="openCity(event, 'Anger')" style="display: inline-block;">Anger</button>
+  <button class="tablinks" onclick="openCity(event, 'Contempt')" style="display: inline-block;">Contempt</button>
+</div>
+
+<div id="Neutral" class="tabcontent">
+  <h3>Neutral</h3>
+</div>
+
+<div id="Happiness" class="tabcontent">
+  <h3>Happiness</h3>
+  <img src="https://www.askideas.com/media/24/Obama-Funny-Smiley-Face-Picture.jpg" style="border: 1px solid white;border-radius: 5%;opacity: 1; height:200px;width:auto">
+</div>
+
+<div id="Sadness" class="tabcontent">
+  <h3>Sadness</h3>
+  <img src="https://lh3.googleusercontent.com/proxy/81RCvWafTZid7qRC0mjgKjcPhqP5Yojjd5NECAaoC3T_SjM2MQfAKtNLDIpYM1DuHqoCjxklM7h-QmIeQpBiITF-iI9RRYJmj4mK8V4" style="border: 1px solid white;border-radius: 5%;opacity: 1; height:200px;width:auto">
+</div>
+
+<div id="Surprise" class="tabcontent">
+  <h3>Surprise</h3>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQVomhpVcVUipOjJxdpX1YzLIEHIT-wdrwZt9WPWMDp-cEN2Vvp" style="border: 1px solid white;border-radius: 5%;opacity: 1; height:200px;width:auto">
+</div>
+
+<div id="Disgust" class="tabcontent">
+  <h3>Disgust</h3>
+  <img src="https://media.istockphoto.com/photos/facial-expressions-of-young-black-woman-on-brick-wall-picture-id962908052?k=6&m=962908052&s=612x612&w=0&h=dmx1I-Agg4VIU2BryWzGTJ7YKWNFDPXd-4rGdYLNQ68=" style="border: 1px solid white;border-radius: 5%;opacity: 1; height:200px;width:auto">
+</div>
+
+<div id="Fear" class="tabcontent">
+  <h3>Fear</h3>
+  <img src="https://lh3.googleusercontent.com/proxy/uKCqkLGIz8z9x5qOqr2UiYSmEuepn-vm72SW4M5NG1ictN-pxU3Rr7pfVadckEAi-zW-Z5QTKpIiT3lPu-RK1MDImnmprF4" style="border: 1px solid white;border-radius: 5%;opacity: 1; height:200px;width:auto">
+</div>
+
+ <div id="Anger" class="tabcontent">
+  <h3>Anger</h3>
+  <img src="https://cdn.hswstatic.com/gif/anger-how-3.jpg" style="border: 1px solid white;border-radius: 5%;opacity: 1; height:200px;width:auto">
+</div>
+
+<div id="Contempt" class="tabcontent">
+  <h3>Contempt</h3>
+  <img src="https://i.pinimg.com/originals/cc/be/27/ccbe276dbbbe03fe93eb68a30b84466b.jpg" style="border: 1px solid white;border-radius: 5%;opacity: 1; height:200px;width:auto">
+</div>
+
+</div>
+<!----guide tab---->
 
     <div id="camera" style="margin:0 auto;height:auto;width:auto; text-align:center;border: 1px solid white;border-radius: 4px;padding: 5px;"></div>
     <div style="margin:0 auto;height:auto;width:auto; text-align:center;margin-top:25px">
@@ -101,7 +215,7 @@ body {
     // CAMERA SETTINGS.
     Webcam.set({
         width: 440,
-        height: 380,
+        height: 331,
         image_format: 'jpeg',
         jpeg_quality: 100
     });
@@ -132,5 +246,21 @@ xhr.onload = function() {
 setInterval(takeSnapShot, 2100);
 
 
+</script>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
 </script>
 </html>

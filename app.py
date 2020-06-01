@@ -26,7 +26,7 @@ import time
 from tensorflow.python.keras.backend import set_session
 sess = tf.Session()
 set_session(sess)
-model=keras.models.load_model('efficientnetb7valEmotion.h5')
+#model=keras.models.load_model('efficientnetb7valEmotion.h5')
 global graph
 graph = tf.get_default_graph()
 import tensorflow as tf
@@ -95,4 +95,4 @@ def process():
 
 
 if __name__=='__main__':
-    app.run(host='0.0.0.0' , port=8000)
+    app.run( port=5000)
