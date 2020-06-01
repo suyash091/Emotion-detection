@@ -24,14 +24,14 @@ import tensorflow as tf
 global model
 import time
 from tensorflow.python.keras.backend import set_session
-sess = tf.Session()
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+keras.backend.set_session(sess)
 set_session(sess)
-model=keras.models.load_model('affectnetepochfinal.h5')
+#model=keras.models.load_model('affectnetepochfinal.h5')
 global graph
 graph = tf.get_default_graph()
 import tensorflow as tf
-emotions=['neutral',	'happiness',	'surprise',	'sadness',	'anger',	'disgust',	'fear', 'contempt',	'unknown',	'NF']
-
+emotions=['neutral','happiness', 'sadness', 'surprise', 'fear', 'disgust', 'anger','contempt', 'none', 'unknown', 'NF']
 def readb64(uri):
    encoded_data = uri.split(',')[1]
    nparr = np.fromstring(base64.b64decode(encoded_data), np.uint8)
