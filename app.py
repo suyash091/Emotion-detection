@@ -1,4 +1,11 @@
 from flask import Flask, render_template, session, request, jsonify
+import tensorflow as tf
+global model
+import time
+from tensorflow.python.keras.backend import set_session
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+set_session(sess)
+print('session set')
 from numpy import asarray
 from mtcnn.mtcnn import MTCNN
 import cv2
@@ -12,7 +19,6 @@ from keras.layers import Dense, Dropout, BatchNormalization
 import numpy as np
 import keras
 from keras.optimizers import SGD, Adam, Adadelta
-import tensorflow as tf
 from keras.layers import AveragePooling2D
 from keras.layers import Dropout
 from keras.layers import Flatten
@@ -20,17 +26,9 @@ from PIL import Image
 from keras.preprocessing import image as imag
 import base64
 import efficientnet.keras as efn
-import tensorflow as tf
-global model
-import time
-from tensorflow.python.keras.backend import set_session
-sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
-keras.backend.set_session(sess)
-set_session(sess)
-#model=keras.models.load_model('affectnetepochfinal.h5')
+model=keras.models.load_model('affectnetepochfinal.h5')
 global graph
 graph = tf.get_default_graph()
-import tensorflow as tf
 emotions=['neutral','happiness', 'sadness', 'surprise', 'fear', 'disgust', 'anger','contempt', 'none', 'unknown', 'NF']
 def readb64(uri):
    encoded_data = uri.split(',')[1]
