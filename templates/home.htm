@@ -162,7 +162,23 @@ border: 1px solid white;
 </div>
 
 <div id="Neutral" class="tabcontent">
-  <h3>Neutral</h3>
+  <h2>Neutral</h2>
+    <p>We can currently classify emotions from the following categories 'neutral', 'happiness', 'sadness', 'surprise', 'fear', 'disgust', 'anger', 'contempt', 'none', 'unknown' and 'No Face'.</p>
+    <p>Please take a snapshot below with normal expressions or select an emotion above to view an example and proceed with an expression below:</p>
+    <br>
+    <h3>Note:</h3>
+    <ul>
+        <li><p>This model was trained for 78 iteration on 0.5 million images</p></li>
+        <li><p>though this model has achieved real world deployment ready accuracies, but still this is a demo model and we still have a room for improvement</p></li>
+    </ul>
+    <h4>Scope of improvement(although performance criteria has already been met):</h4>
+    <ul>
+    <li>Further more data (Already identified) with people from various demographics and diversity of emotions can be incorporated in the model.</li>
+    <li>Model was trained on image size of 48x48 under resource constraint which is quite small and final model can be prepared on images with higher resolution.</li>
+    <li>This a one step model, however a two step ensemble model architecture can offer even better results.</li>
+    <li>Further balancing of data can be done.</li>
+    <li>A larger model can be opted for training the data once computing resources is available.</li>
+    <li>This model deployed on a normal hardware hence inference time can further be reduced on a dedicated server.</li>
 </div>
 
 <div id="Happiness" class="tabcontent">

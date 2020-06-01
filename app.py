@@ -26,7 +26,7 @@ import time
 from tensorflow.python.keras.backend import set_session
 sess = tf.Session()
 set_session(sess)
-#model=keras.models.load_model('efficientnetb7valEmotion.h5')
+model=keras.models.load_model('affectnetepochfinal.h5')
 global graph
 graph = tf.get_default_graph()
 import tensorflow as tf
@@ -36,7 +36,7 @@ def readb64(uri):
    encoded_data = uri.split(',')[1]
    nparr = np.fromstring(base64.b64decode(encoded_data), np.uint8)
    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-   img = cv2.cvtColor(img,cv2.COLOR_RGB2BGR)
+   img = cv2.cvtColor(imageBGR , cv2.COLOR_BGR2RGB)
    return img
 
 def extract_face(img_data, required_size=(224, 224)):
@@ -48,15 +48,14 @@ def extract_face(img_data, required_size=(224, 224)):
     results = detector.detect_faces(pixels)
     # extract the bounding box from the first face
     x1, y1, width, height = results[0]['box']
-    x2, y2 = x1 + width, y1 + height
+    x2, y2 = x1 + width + 3, y1 + height + 3
     # extract the face
     face = pixels[y1:y2, x1:x2]
     # resize pixels to the model size
     image = Image.fromarray(face)
     image = image.resize(required_size)
     face_array = asarray(image)
-    im_pil = Image.fromarray(face_array)
-    img = im_pil.convert('LA').convert('RGB')
+    img = Image.fromarray(face_array)
     img = img.resize((48, 48))
     img = imag.img_to_array(img)
     img = img / 255.0
